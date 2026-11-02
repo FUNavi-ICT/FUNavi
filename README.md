@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <p align="center">
   <img src="docs/images/banner.png" alt="FUNavi — 公立はこだて未来大学 生協食堂の混雑ナビ" width="100%">
 </p>
@@ -125,3 +126,6 @@ flowchart LR
 <p align="center">
   公立はこだて未来大学 高度ICT演習
 </p>
+=======
+# FUNavi
+>>>>>>> 4cd44343fd0c7e60e1ea6abc5b6fa678cfda7948
