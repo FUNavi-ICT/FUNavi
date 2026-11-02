@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/banner.png" alt="FUNavi — 公立はこだて未来大学 生協食堂の混雑ナビ" width="100%">
+  <img src="docs/images/banner-animated.svg" alt="FUNavi — 公立はこだて未来大学 生協食堂の混雑ナビ" width="100%">
 </p>
 
 # FUNavi
