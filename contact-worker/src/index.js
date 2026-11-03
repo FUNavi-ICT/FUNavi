@@ -25,9 +25,15 @@ export default {
     if (request.method !== "POST") return reply(405, { error: "このアドレスはお問い合わせの送信専用です。" });
     if (!allowed) return reply(403, { error: "このページからは送信できません。" });
 
+    // 大きすぎる送信は読み込まずに拒否する（フォームの上限は合計でも数KB）
+    const size = Number(request.headers.get("Content-Length") || 0);
+    if (size > 16 * 1024) return reply(413, { error: "送信内容が大きすぎます。" });
+
     let data;
     try {
-      data = await request.json();
+      const text = await request.text();
+      if (text.length > 16 * 1024) return reply(413, { error: "送信内容が大きすぎます。" });
+      data = JSON.parse(text);
     } catch {
       return reply(400, { error: "送信内容を読み取れませんでした。もう一度お試しください。" });
     }
@@ -79,7 +85,11 @@ export default {
       });
 
     const res = await post(payload);
-    if (!res.ok) return reply(502, { error: "送信できませんでした。時間をおいてもう一度お試しください。" });
+    if (!res.ok) {
+      console.error(JSON.stringify({ event: "discord_post_failed", status: res.status }));
+      return reply(502, { error: "送信できませんでした。時間をおいてもう一度お試しください。" });
+    }
+    console.log(JSON.stringify({ event: "contact_received", category, length: message.length }));
     if (rest) {
       for (let i = 0; i < rest.length; i += 1900) {
         await post({ username: "FUNavi お問い合わせ", allowed_mentions: { parse: [] }, content: "（続き）\n" + rest.slice(i, i + 1900) });
