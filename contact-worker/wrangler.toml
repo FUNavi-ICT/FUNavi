@@ -1,0 +1,10 @@
+name = "funavi-contact"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+# お問い合わせを受け付けるホームページのアドレス（これ以外からの送信は拒否）
+ALLOWED_ORIGIN = "https://fun-funavi.github.io"
+
+# DISCORD_WEBHOOK_URL は秘密情報なので、ここには書かずに次のコマンドで設定する
+#   npx wrangler secret put DISCORD_WEBHOOK_URL
