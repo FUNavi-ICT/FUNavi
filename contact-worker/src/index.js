@@ -7,9 +7,10 @@ const LIMITS = { name: 100, email: 254, message: 3000 };
 export default {
   async fetch(request, env) {
     const origin = request.headers.get("Origin") || "";
-    const allowed = origin === env.ALLOWED_ORIGIN;
+    const origins = env.ALLOWED_ORIGIN.split(",").map((s) => s.trim());
+    const allowed = origins.includes(origin);
     const cors = {
-      "Access-Control-Allow-Origin": allowed ? origin : env.ALLOWED_ORIGIN,
+      "Access-Control-Allow-Origin": allowed ? origin : origins[0],
       "Access-Control-Allow-Methods": "POST, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
       "Access-Control-Max-Age": "86400",
