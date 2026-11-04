@@ -1,6 +1,6 @@
 # contact-worker
 
-FUNavi ホームページ（https://fun-funavi.github.io ）のお問い合わせフォームから送られた内容を受け取り、Discord のチャンネルに通知する Cloudflare Workers です。
+FUNavi ホームページ（https://funavi.kuren.dev ）のお問い合わせフォームから送られた内容を受け取り、Discord のチャンネルに通知する Cloudflare Workers です。
 
 ## 初回の公開手順
 
